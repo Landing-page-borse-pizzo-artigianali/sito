@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filo &amp; Pizzo — Borse di pizzo fatte a mano</title>
+<meta name="description" content="Borse di pizzo fatte a mano, pezzi unici realizzati all'uncinetto e al tombolo. Lavorazioni del pizzo su misura per accessori, abiti e arredo.">
+<meta property="og:title" content="Filo &amp; Pizzo — Borse di pizzo fatte a mano">
+<meta property="og:description" content="Pezzi unici all'uncinetto e lavorazioni del pizzo su misura.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="foto/ritratto.jpg">
+<meta name="theme-color" content="#faf6f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23a96a66'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/font2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --ivory:#faf6f0;
+    --cream:#f1e9de;
+    --rose:#c98f8a;
+    --rose-deep:#a96a66;
+    --ink:#3a2f2d;
+    --muted:#7d6e6a;
+    --line:#e3d7c8;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--ivory);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:.01em}
+  h2{font-size:clamp(2.1rem,4.5vw,3.2rem)}
+  .eyebrow{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rose-deep);font-weight:400;margin-bottom:14px}
+  .lead{color:var(--muted);font-size:1.08rem;max-width:560px}
+  section{padding:104px 0}
+  .btn{display:inline-block;padding:15px 32px;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;border:1px solid var(--ink);transition:.3s;cursor:pointer;background:transparent;font-family:var(--sans);color:var(--ink)}
+  .btn:hover{background:var(--ink);color:var(--ivory)}
+  .btn.solid{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
+  .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+  .lace-edge{height:22px;background:
+    radial-gradient(circle at 11px 0,transparent 8px,var(--ivory) 8.5px) 0 0/22px 22px repeat-x;}
+
+  /* NAV */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;transition:.35s}
+  header.scrolled{background:rgba(250,246,240,.94);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{font-family:var(--serif);font-size:1.7rem;font-weight:500;letter-spacing:.02em}
+  .logo em{color:var(--rose-deep);font-style:italic}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase}
+  nav a:hover{color:var(--rose-deep)}
+  .burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:24px;position:relative}
+  .burger span,.burger::before,.burger::after{content:"";position:absolute;left:0;width:100%;height:1.5px;background:var(--ink);transition:.3s}
+  .burger::before{top:3px}.burger span{top:11px}.burger::after{top:19px}
+
+  /* HERO */
+  .hero{min-height:100vh;display:grid;align-items:center;padding:130px 0 90px;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse at 80% 20%,#f3dcd7 0,transparent 55%),var(--ivory)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .hero h1{font-size:clamp(3rem,7vw,5.6rem);margin-bottom:26px}
+  .hero h1 em{color:var(--rose-deep);font-weight:400}
+  .hero .lead{margin-bottom:38px}
+  .cta{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-art{position:relative;aspect-ratio:4/5;max-width:440px;margin-inline:auto;width:100%}
+  .arch{position:absolute;inset:0;border-radius:220px 220px 6px 6px;background:var(--cream);overflow:hidden;border:1px solid var(--line)}
+  .arch img{width:100%;height:100%;object-fit:cover}
+  .badge{position:absolute;left:-30px;bottom:48px;background:var(--ivory);padding:18px 22px;border:1px solid var(--line);box-shadow:0 14px 40px rgba(58,47,45,.1);font-family:var(--serif);font-size:1.15rem;line-height:1.3}
+  .badge small{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep)}
+
+  /* STRIP */
+  .strip{background:var(--ink);color:var(--cream);padding:26px 0}
+  .strip ul{list-style:none;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 30px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase}
+  .strip li::before{content:"✦";color:var(--rose);margin-right:12px}
+
+  /* STORIA */
+  .about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+  .portrait{aspect-ratio:4/5;background:var(--cream);border-radius:220px 220px 6px 6px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(58,47,45,.14)}
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+  .portrait::after{content:"";position:absolute;inset:12px;border:1px solid rgba(250,246,240,.7);border-radius:210px 210px 2px 2px;pointer-events:none}
+  .about p{color:var(--muted);margin-top:20px;max-width:540px}
+  .sign{font-family:var(--serif);font-style:italic;font-size:1.8rem;color:var(--rose-deep);margin-top:28px}
+
+  /* COLLEZIONE */
+  .collection{background:var(--cream)}
+  .head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:var(--ivory);border:1px solid var(--line);transition:.35s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(58,47,45,.1)}
+  .card .pic{aspect-ratio:1;background:#f6eee6;overflow:hidden;position:relative}
+  .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+  .card:hover .pic img{transform:scale(1.06)}
+  .card .info{padding:22px 22px 24px}
+  .card h3{font-size:1.45rem;margin:2px 0 4px}
+  .card p{font-size:.9rem;color:var(--muted)}
+  .products{grid-template-columns:repeat(4,1fr);gap:22px}
+  .products .card.hide{display:none}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+  .chip{font:inherit;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 20px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:.3s}
+  .chip:hover{border-color:var(--rose)}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+  #more{margin-top:44px}
+  #more[hidden]{display:none}
+  .check{display:flex!important;grid-template-columns:none;align-items:flex-start;gap:12px;letter-spacing:0;text-transform:none;font-size:.82rem;line-height:1.5}
+  .check input{width:auto;margin-top:3px;accent-color:var(--rose-deep);padding:0}
+  .check a,.privacy a,footer.site a.lk{text-decoration:underline;text-underline-offset:3px}
+  footer.site .flinks{display:flex;gap:22px;flex-wrap:wrap}
+  footer.site .flinks a,footer.site .flinks button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;opacity:.85}
+  footer.site .flinks a:hover,footer.site .flinks button:hover{opacity:1;text-decoration:underline}
+  .legal{width:100%;font-size:.78rem;opacity:.6;margin-top:6px}
+  .card .row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .price{font-family:var(--serif);font-size:1.4rem}
+  .tag{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-deep)}
+  .note{text-align:center;margin-top:44px;color:var(--muted);font-size:.95rem}
+
+  /* LAVORAZIONI */
+  .services .grid{grid-template-columns:repeat(4,1fr);gap:22px}
+  .service{padding:36px 26px;border:1px solid var(--line);text-align:center;transition:.3s;background:#fff8}
+  .service:hover{border-color:var(--rose);background:#fff}
+  .service svg{width:54px;height:54px;margin:0 auto 20px;stroke:var(--rose-deep);fill:none;stroke-width:1.2}
+  .service h3{font-size:1.5rem;margin-bottom:10px}
+  .service p{font-size:.92rem;color:var(--muted)}
+  .center{text-align:center}
+  .center .lead{margin-inline:auto}
+  .services .head{display:block;text-align:center}
+  .services .head .lead{margin:16px auto 0}
+
+  /* PROCESSO */
+  .process{background:var(--ink);color:var(--cream)}
+  .process h2{color:#fff}
+  .process .eyebrow{color:var(--rose)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;margin-top:60px;counter-reset:s}
+  .step{border-top:1px solid rgba(241,233,222,.25);padding-top:26px}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-size:2.6rem;color:var(--rose);display:block;line-height:1;margin-bottom:14px}
+  .step h3{font-size:1.45rem;margin-bottom:8px;color:#fff}
+  .step p{font-size:.93rem;color:rgba(241,233,222,.72)}
+
+  /* RECENSIONI */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  blockquote{padding:34px 30px;background:var(--cream);position:relative}
+  blockquote::before{content:"“";font-family:var(--serif);font-size:4rem;line-height:.5;color:var(--rose);display:block;margin-bottom:10px;opacity:.6}
+  blockquote p{font-family:var(--serif);font-size:1.25rem;line-height:1.4}
+  blockquote footer{margin-top:18px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* FAQ */
+  .faq .list{max-width:780px;margin:48px auto 0;text-align:left}
+  details{border-bottom:1px solid var(--line);padding:22px 0}
+  summary{font-family:var(--serif);font-size:1.45rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--rose-deep);font-size:1.6rem;line-height:1;transition:.3s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);margin-top:12px;max-width:640px}
+  .wa{position:fixed;right:20px;bottom:20px;z-index:60;background:var(--rose-deep);color:#fff;padding:14px 22px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 12px 30px rgba(58,47,45,.25);transition:.3s}
+  .wa:hover{background:var(--ink)}
+
+  .stars{color:var(--rose-deep);letter-spacing:.25em;font-size:.95rem;margin-bottom:12px}
+  blockquote footer small{display:block;margin-top:4px;color:var(--rose-deep);letter-spacing:.14em;font-size:.72rem}
+  /* CONTATTI */
+  .contact{background:linear-gradient(180deg,var(--ivory),#f3dcd7)}
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .contact .links{margin-top:34px;display:grid;gap:12px;font-size:1rem}
+  .contact .links a{border-bottom:1px solid var(--line);padding-bottom:10px;display:flex;justify-content:space-between}
+  .contact .links a:hover{color:var(--rose-deep);border-color:var(--rose)}
+  form{background:var(--ivory);padding:40px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(58,47,45,.08);display:grid;gap:20px}
+  label{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:grid;gap:8px}
+  input,select,textarea{font:inherit;font-weight:300;color:var(--ink);padding:12px 0;border:0;border-bottom:1px solid var(--line);background:transparent;outline:none;border-radius:0;font-size:1rem;letter-spacing:0;text-transform:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--rose-deep)}
+  textarea{resize:vertical;min-height:90px}
+  .privacy{font-size:.78rem;color:var(--muted);letter-spacing:0;text-transform:none}
+
+  footer.site{background:var(--ink);color:rgba(241,233,222,.7);padding:46px 0;font-size:.85rem}
+  footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  footer.site .logo{color:#fff;font-size:1.5rem}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  nav li,.logo{white-space:nowrap}
+  @media (max-width:1040px){
+    .burger{display:block}
+    nav ul{position:absolute;top:78px;left:0;right:0;background:var(--ivory);flex-direction:column;gap:0;padding:8px 20px 20px;border-bottom:1px solid var(--line);display:none}
+    nav ul.open{display:flex}
+    nav li{padding:14px 0;border-bottom:1px solid var(--line)}
+  }
+  @media (max-width:980px){
+    .hero .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr;gap:50px}
+    .hero-art{max-width:340px}
+    .badge{left:-10px}
+    .grid,.services .grid,.products{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .quotes{grid-template-columns:1fr}
+    .portrait{max-width:380px}
+  }
+  @media (max-width:680px){
+    section{padding:72px 0}
+    .burger{display:block}
+    nav ul{position:absolute;top:78px;left:0;right:0;background:var(--ivory);flex-direction:column;gap:0;padding:8px 20px 20px;border-bottom:1px solid var(--line);display:none}
+    nav ul.open{display:flex}
+    nav li{padding:14px 0;border-bottom:1px solid var(--line)}
+    .grid,.services .grid,.steps{grid-template-columns:1fr}
+    .products{grid-template-columns:repeat(2,1fr);gap:12px}
+    .card .info{padding:14px 14px 16px}
+    .card h3{font-size:1.2rem}
+    .card p{display:none}
+    .card .row{margin-top:10px;padding-top:10px}
+    .price{font-size:1.15rem}
+    form{padding:28px 22px}
+    .strip ul{justify-content:center;text-align:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo">Filo <em>&amp;</em> Pizzo</a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#storia">La storia</a></li>
+        <li><a href="#collezione">Collezione</a></li>
+        <li><a href="#lavorazioni">Lavorazioni</a></li>
+        <li><a href="#come">Come lavoro</a></li>
+        <li><a href="#faq">Domande</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Apri il menu"><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Fatto a mano · Pezzi unici</p>
+      <h1>Il pizzo che diventa <em>borsa</em>, filo dopo filo.</h1>
+      <p class="lead">Borse e accessori in pizzo realizzati interamente a mano, con la pazienza di una volta e il gusto di oggi. Ogni pezzo nasce da ore di lavoro e non sarà mai identico a un altro.</p>
+      <div class="cta">
+        <a href="#collezione" class="btn solid">Scopri le borse</a>
+        <a href="#contatti" class="btn">Richiedi un pezzo su misura</a>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="arch">
+        <img src="foto/borsa-autunno.jpg" alt="Borsa fatta a mano all'uncinetto con fiori e spirali in lana colorata e manico in legno" fetchpriority="high">
+      </div>
+      <div class="badge"><small>100% artigianale</small>Uncinetto &amp;<br>tombolo</div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap"><ul>
+    <li>Fatto a mano in Italia</li>
+    <li>Cotone e filati naturali</li>
+    <li>Pezzi unici o su ordinazione</li>
+    <li>Spedizione in tutta Italia</li>
+  </ul></div>
+</div>
+
+<!-- STORIA -->
+<section class="about" id="storia">
+  <div class="wrap">
+    <div class="portrait reveal">
+      <img src="foto/ritratto.jpg" alt="Ritratto dell'artigiana che realizza le borse in pizzo" loading="lazy">
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">La mia storia</p>
+      <h2>Ho imparato a intrecciare il filo, poi ho smesso di fermarmi.</h2>
+      <p>Tutto è iniziato con un uncinetto e un gomitolo di cotone. Quello che era una passione è diventato il mio lavoro: oggi creo borse in pizzo che uniscono la delicatezza della tradizione a linee moderne, pensate per essere usate ogni giorno — e per essere notate.</p>
+      <p>Lavoro in piccole serie e su richiesta, scegliendo filati di qualità e curando ogni dettaglio: dal punto alla fodera, fino alla chiusura. Quando scegli una mia borsa, scegli un pezzo che ha una storia e delle mani dietro.</p>
+      <div class="sign">— Con amore, Filo &amp; Pizzo</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLEZIONE -->
+<section class="collection" id="collezione">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <p class="eyebrow">La collezione</p>
+        <h2>Borse che raccontano<br>un lavoro lento.</h2>
+      </div>
+      <p class="lead">Ogni modello è disponibile in più colori e può essere personalizzato. Le tempistiche dipendono dalla lavorazione.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Filtra la collezione">
+      <button class="chip on" data-f="all">Tutte</button>
+      <button class="chip" data-f="bn">Bianco &amp; nero</button>
+      <button class="chip" data-f="au">Colori d'autunno</button>
+      <button class="chip" data-f="op">Opere</button>
+    </div>
+
+    <!-- BOZZA: prodotti generati da JS (script in fondo) con le foto di esempio ripetute; sostituire con i modelli reali -->
+    <div class="grid products" id="products"></div>
+    <p class="center"><button class="btn" id="more" type="button">Mostra tutte le creazioni</button></p>
+    <!-- BOZZA: nomi, prezzi e descrizioni sono esempi; sostituire con i modelli reali e le foto dei prodotti -->
+    <p class="note">Ogni borsa è un pezzo unico: scrivimi per conoscere disponibilità, colori e tempi di realizzazione.</p>
+  </div>
+</section>
+
+<!-- LAVORAZIONI -->
+<section class="services" id="lavorazioni">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Non solo borse</p>
+      <h2>Lavorazioni del pizzo<br>su misura</h2>
+      <p class="lead">Lavoro il pizzo anche per te: per un dettaglio prezioso, un ricordo di famiglia da rinnovare o un progetto tutto da inventare.</p>
+    </div>
+    <div class="grid">
+      <div class="service reveal">
+        <svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="20"/><circle cx="27" cy="27" r="12"/><circle cx="27" cy="27" r="4"/></svg>
+        <h3>Centrini &amp; arredo</h3>
+        <p>Centrini, runner, tende e tovaglie in pizzo, anche nelle misure che non trovi.</p>
+      </div>
+      <div class="service reveal">
+        <svg viewBox="0 0 54 54"><path d="M8 20c6 8 12 8 19 0 7 8 13 8 19 0M8 32c6 8 12 8 19 0 7 8 13 8 19 0"/></svg>
+        <h3>Bordi &amp; applicazioni</h3>
+        <p>Inserti e bordure in pizzo per abiti, lingerie, abiti da sposa e tessuti d'arredo.</p>
+      </div>
+      <div class="service reveal">
+        <svg viewBox="0 0 54 54"><path d="M27 8c8 6 8 18 0 24-8-6-8-18 0-24ZM12 26c10-2 16 6 15 20-12 0-18-8-15-20ZM42 26c-10-2-16 6-15 20 12 0 18-8 15-20Z"/></svg>
+        <h3>Accessori</h3>
+        <p>Colletti, guanti, fermagli, segnaposto e bomboniere in pizzo per occasioni speciali.</p>
+      </div>
+      <div class="service reveal">
+        <svg viewBox="0 0 54 54"><path d="M10 44 L44 10M30 10h14v14M10 10l12 12"/></svg>
+        <h3>Restauro &amp; riparazioni</h3>
+        <p>Recupero di pizzi antichi e di famiglia: rammendi invisibili e ricostruzione dei motivi.</p>
+      </div>
+    </div>
+    <p class="note center reveal" style="margin-top:44px"><a href="#contatti" class="btn">Raccontami la tua idea</a></p>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="process" id="come">
+  <div class="wrap">
+    <p class="eyebrow">Come lavoro</p>
+    <h2>Dal filo al regalo, in quattro passi.</h2>
+    <div class="steps">
+      <div class="step reveal"><h3>Ci parliamo</h3><p>Mi racconti cosa desideri: modello, colore, misure, occasione.</p></div>
+      <div class="step reveal"><h3>Scelgo i filati</h3><p>Ti propongo campioni di filato e disegno, così vedi prima come sarà.</p></div>
+      <div class="step reveal"><h3>Lo realizzo</h3><p>Lavoro a mano ogni punto, con aggiornamenti e foto durante la creazione.</p></div>
+      <div class="step reveal"><h3>Arriva da te</h3><p>Confezione regalo e spedizione tracciata, pronta per essere indossata.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="wrap center">
+    <p class="eyebrow">Dicono di me</p>
+    <h2>Parole di chi le indossa</h2>
+    <div class="quotes" style="text-align:left">
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>Una borsa che fa girare le teste. Si vede subito che è fatta con amore: ogni punto è perfetto e il manico in legno è una chicca.</p><footer>— Giulia, Milano<small>Borsa Foresta</small></footer></blockquote>
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>L'ho regalata a mia madre: lei che di uncinetto se ne intende non ha smesso di guardarla. Pezzo unico, davvero.</p><footer>— Marco, Torino<small>Borsa Notte e Latte</small></footer></blockquote>
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>Mi ha realizzato una borsa nei colori del mio abito per la cerimonia. Precisa, gentile e puntualissima nella consegna.</p><footer>— Elena, Bologna<small>Su misura</small></footer></blockquote>
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>Arrivata in una confezione bellissima. Leggera, comoda e ricevo complimenti ogni volta che la porto.</p><footer>— Chiara, Roma<small>Borsa Zafferano</small></footer></blockquote>
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>Ho commissionato un ritratto in fili da regalare: un lavoro incredibile, la mia amica si è commossa.</p><footer>— Francesca, Firenze<small>Ritratto in Fili</small></footer></blockquote>
+      <blockquote class="reveal"><div class="stars" aria-label="5 stelle su 5">★★★★★</div><p>Si vede la cura per i dettagli e i materiali. Mi ha seguita passo dopo passo con foto durante la lavorazione.</p><footer>— Valentina, Verona<small>Borsa Eclissi</small></footer></blockquote>
+    </div>
+    <!-- BOZZA: recensioni di esempio inventate. Prima della pubblicazione sostituirle con recensioni reali e autorizzate dalle clienti (le recensioni false sono vietate) -->
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq center" id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Domande frequenti</p>
+    <h2>Prima di scrivermi</h2>
+    <div class="list">
+      <details><summary>Quanto tempo serve per una borsa?</summary><p>Dipende dal modello: di solito da una a tre settimane. Per i pezzi su misura ti do una data precisa dopo aver definito il progetto.</p></details>
+      <details><summary>Posso scegliere colore e dimensioni?</summary><p>Certo. Ogni modello si può realizzare in più colori di filato, con misure e finiture personalizzate.</p></details>
+      <details><summary>Come si lava una borsa in pizzo?</summary><p>Lavaggio a mano in acqua fredda con sapone neutro, asciugatura in piano. Insieme alla borsa ricevi le istruzioni di cura.</p></details>
+      <details><summary>Spedite in tutta Italia?</summary><p>Sì, con corriere tracciato e confezione regalo. I tempi di consegna sono di 2–4 giorni lavorativi.</p></details>
+      <details><summary>Fate restauri di pizzi di famiglia?</summary><p>Sì, valuto ogni pezzo con te e ti dico con onestà cosa si può recuperare.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="contact" id="contatti">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Contatti</p>
+      <h2>Creiamo qualcosa<br>di unico, insieme.</h2>
+      <p class="lead" style="margin-top:20px">Scrivimi per una borsa che hai visto, per un progetto su misura o anche solo per fare due chiacchiere sul pizzo.</p>
+      <div class="links">
+        <a href="https://wa.me/390000000000" target="_blank" rel="noopener"><span>WhatsApp</span><span>+39 000 000 0000</span></a>
+        <a href="mailto:ciao@filoepizzo.it"><span>Email</span><span>ciao@filoepizzo.it</span></a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener"><span>Instagram</span><span>@filoepizzo</span></a>
+      </div>
+    </div>
+
+    <form id="form" class="reveal">
+      <label>Il tuo nome<input type="text" name="nome" required autocomplete="name"></label>
+      <label>Cosa ti interessa?
+        <select name="tipo">
+          <option>Una borsa della collezione</option>
+          <option>Una borsa su misura</option>
+          <option>Lavorazione del pizzo</option>
+          <option>Restauro / riparazione</option>
+          <option>Altro</option>
+        </select>
+      </label>
+      <label>Raccontami la tua idea<textarea name="msg" placeholder="Modello, colore, per quando ti serve..."></textarea></label>
+      <label class="check"><input type="checkbox" name="privacy" required><span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei miei dati per essere ricontattata/o.</span></label>
+      <button class="btn solid" type="submit">Invia su WhatsApp</button>
+      <p class="privacy">Cliccando si apre WhatsApp con il messaggio già scritto: nessun dato viene salvato su questo sito.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<a class="wa" href="https://wa.me/390000000000" target="_blank" rel="noopener" aria-label="Scrivimi su WhatsApp">Scrivimi</a>
+
+<footer class="site">
+  <div class="wrap">
+    <a href="#" class="logo">Filo <em>&amp;</em> Pizzo</a>
+    <span>© <span id="y"></span> Filo &amp; Pizzo · Fatto a mano con amore</span>
+    <div class="flinks">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookie.html">Cookie Policy</a>
+      <button type="button" data-cookie-settings>Gestisci cookie</button>
+    </div>
+    <p class="legal">[Ragione sociale / Nome Cognome] · P.IVA [00000000000] · C.F. [XXXXXXXXXXXXXXXX] · [Indirizzo], [CAP Città] · ciao@filoepizzo.it</p>
+  </div>
+</footer>
+
+<script>
+  // Header che cambia allo scroll
+  const header = document.getElementById('top');
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 30);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Menu mobile
+  const menu = document.getElementById('menu');
+  document.getElementById('burger').addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Comparsa morbida delle sezioni
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Collezione di esempio (20 pezzi) — BOZZA: foto ripetute, sostituire con i prodotti reali
+  const PHOTOS = {
+    bn:{src:'foto/borsa-bianconera.jpg', alt:'Borsa all\'uncinetto freeform in bianco e nero con manici in pelle', label:'Bianco & nero', pos:'50% 50%'},
+    au:{src:'foto/borsa-autunno.jpg', alt:'Borsa all\'uncinetto freeform nei colori dell\'autunno con manico in legno', label:'Colori d\'autunno', pos:'50% 50%'},
+    op:{src:'foto/opera-volto.jpg', alt:'Ritratto di un volto realizzato interamente all\'uncinetto', label:'Opera', pos:'50% 30%'}
+  };
+  const PRODUCTS = [
+    ['bn','Borsa Notte e Latte',129],['au','Borsa Foresta',139],['bn','Borsa Domino',119],['au','Borsa Zafferano',145],
+    ['op','Ritratto Luna',220],['bn','Borsa Inchiostro',125],['au','Borsa Terra Bruciata',135],['bn','Borsa Eclissi',149],
+    ['au','Borsa Muschio',129],['bn','Borsa Scacco',115],['au','Borsa Quercia',155],['bn','Borsa Panna e Carbone',122],
+    ['au','Borsa Ruggine',139],['bn','Borsa Onice',132],['au','Borsa Cannella',125],['bn','Borsa Piano Nero',118],
+    ['au','Borsa Giardino d\'Autunno',165],['op','Ritratto in Fili',240],['bn','Borsa Zebra',128],['au','Borsa Sottobosco',149]
+  ];
+  const list = document.getElementById('products'), more = document.getElementById('more');
+  const VISIBLE = 8; let filter = 'all', expanded = false;
+  list.innerHTML = PRODUCTS.map(([k,name,price]) => {
+    const p = PHOTOS[k];
+    return `<article class="card reveal" data-k="${k}">
+      <div class="pic"><img src="${p.src}" alt="${p.alt}" loading="lazy" style="object-position:${p.pos}"></div>
+      <div class="info"><span class="tag">${p.label}</span><h3>${name}</h3>
+        <p>Pezzo unico fatto a mano, realizzabile anche in altri colori.</p>
+        <div class="row"><span class="price">€ ${price}</span><a href="#contatti" class="tag" data-ask="${name}">Richiedi →</a></div></div>
+    </article>`;
+  }).join('');
+  function render(){
+    let n = 0, total = 0;
+    list.querySelectorAll('.card').forEach(c => {
+      const ok = filter === 'all' || c.dataset.k === filter;
+      if (ok) total++;
+      const show = ok && (expanded || n < VISIBLE);
+      c.classList.toggle('hide', !show);
+      if (show) { n++; c.classList.add('in'); }
+    });
+    more.hidden = expanded || total <= VISIBLE;
+  }
+  document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+    b.classList.add('on'); filter = b.dataset.f; render();
+  }));
+  more.addEventListener('click', () => { expanded = true; render(); });
+  render();
+
+  // "Richiedi" precompila il messaggio del form
+  list.addEventListener('click', e => {
+    const a = e.target.closest('[data-ask]'); if (!a) return;
+    const t = document.querySelector('#form textarea');
+    t.value = `Vorrei informazioni su: ${a.dataset.ask}.`;
+    document.querySelector('#form select').value = 'Una borsa della collezione';
+  });
+
+  // Form → WhatsApp (cambia il numero qui sotto, formato internazionale senza +)
+  const WHATSAPP = '390000000000';
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const text = `Ciao! Sono ${f.get('nome')}. Mi interessa: ${f.get('tipo')}.\n${f.get('msg') || ''}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  });
+
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+<script src="cookie.js" defer></script>
+</body>
+</html>
