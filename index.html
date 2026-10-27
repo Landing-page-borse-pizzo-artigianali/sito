@@ -455,10 +455,11 @@
     bn:{src:'foto/borsa-bianconera.jpg', alt:'Borsa all\'uncinetto freeform in bianco e nero con manici in pelle', label:'Bianco & nero', pos:'50% 50%'},
     au:{src:'foto/borsa-autunno.jpg', alt:'Borsa all\'uncinetto freeform nei colori dell\'autunno con manico in legno', label:'Colori d\'autunno', pos:'50% 50%'},
     mc:{src:'foto/borsa-multicolor.webp', alt:'Borsa nera con fiori, spirali e rosoni a uncinetto in colori vivaci accanto a un profilo disegnato', label:'Multicolor', pos:'35% 40%'},
+    mc2:{src:'foto/borsa-turchese.webp', alt:"Borsa nera in cotone con manici turchesi e grande composizione di fiori e spirali a uncinetto in turchese, verde e magenta", label:'Multicolor', pos:'50% 55%'},
     op:{src:'foto/opera-volto.jpg', alt:'Ritratto di un volto realizzato interamente all\'uncinetto', label:'Opera', pos:'50% 30%'}
   };
   const PRODUCTS = [
-    ['bn','Borsa Notte e Latte',129],['au','Borsa Foresta',139],['bn','Borsa Domino',119],['mc','Borsa Profilo Fiorito',175],['au','Borsa Zafferano',145],
+    ['bn','Borsa Notte e Latte',129],['au','Borsa Foresta',139],['bn','Borsa Domino',119],['mc','Borsa Profilo Fiorito',175],['mc','Borsa Turchese in Fiore',189,'mc2'],['au','Borsa Zafferano',145],
     ['op','Ritratto Luna',220],['bn','Borsa Inchiostro',125],['au','Borsa Terra Bruciata',135],['bn','Borsa Eclissi',149],
     ['au','Borsa Muschio',129],['bn','Borsa Scacco',115],['au','Borsa Quercia',155],['bn','Borsa Panna e Carbone',122],
     ['au','Borsa Ruggine',139],['bn','Borsa Onice',132],['au','Borsa Cannella',125],['bn','Borsa Piano Nero',118],
@@ -466,8 +467,8 @@
   ];
   const list = document.getElementById('products'), more = document.getElementById('more');
   const VISIBLE = 8; let filter = 'all', expanded = false;
-  list.innerHTML = PRODUCTS.map(([k,name,price]) => {
-    const p = PHOTOS[k];
+  list.innerHTML = PRODUCTS.map(([k,name,price,photo]) => {
+    const p = PHOTOS[photo || k];
     return `<article class="card reveal" data-k="${k}">
       <div class="pic"><img src="${p.src}" alt="${p.alt}" loading="lazy" style="object-position:${p.pos}"></div>
       <div class="info"><span class="tag">${p.label}</span><h3>${name}</h3>
