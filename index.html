@@ -78,6 +78,9 @@
   .strip li::before{content:"✦";color:var(--rose);margin-right:12px}
 
   /* STORIA */
+  .about{position:relative;isolation:isolate;overflow:hidden}
+  .about::before{content:"";position:absolute;inset:0;z-index:-1;background:url(foto/sfondo-storia.webp) center/cover no-repeat;opacity:.1;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 82%,transparent 100%)}
   .about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
   .portrait{aspect-ratio:4/5;background:var(--cream);border-radius:220px 220px 6px 6px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(58,47,45,.14)}
   .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
