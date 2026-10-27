@@ -115,6 +115,9 @@
   .note{text-align:center;margin-top:44px;color:var(--muted);font-size:.95rem}
 
   /* LAVORAZIONI */
+  .services{position:relative;isolation:isolate;overflow:hidden}
+  .services::before{content:"";position:absolute;inset:0;z-index:-1;background:url(foto/sfondo-lavorazioni.webp) center/cover no-repeat;opacity:.08;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 82%,transparent 100%)}
   .services .grid{grid-template-columns:repeat(4,1fr);gap:22px}
   .service{padding:36px 26px;border:1px solid var(--line);text-align:center;transition:.3s;background:#fff8}
   .service:hover{border-color:var(--rose);background:#fff}
