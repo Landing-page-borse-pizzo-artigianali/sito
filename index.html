@@ -162,6 +162,11 @@
   details p{color:var(--muted);margin-top:12px;max-width:640px}
   .wa{position:fixed;right:20px;bottom:20px;z-index:60;background:var(--rose-deep);color:#fff;padding:14px 22px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 12px 30px rgba(58,47,45,.25);transition:.3s}
   .wa:hover{background:var(--ink)}
+  .mus{position:fixed;left:20px;bottom:20px;z-index:60;background:rgba(250,246,240,.92);color:var(--ink);border:1px solid var(--ink);padding:13px 20px;font:400 .78rem Jost,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 30px rgba(58,47,45,.18);transition:.3s}
+  .mus[hidden]{display:none}
+  .mus:hover,.mus[aria-pressed="true"]{background:var(--ink);color:var(--ivory)}
+  footer.site .credit{flex-basis:100%;font-size:.78rem;opacity:.75}
+  footer.site .credit a{text-decoration:underline;text-underline-offset:3px}
 
   .stars{color:var(--rose-deep);letter-spacing:.25em;font-size:.95rem;margin-bottom:12px}
   blockquote footer small{display:block;margin-top:4px;color:var(--rose-deep);letter-spacing:.14em;font-size:.72rem}
@@ -430,6 +435,9 @@
 
 <a class="wa" href="https://wa.me/390000000000" target="_blank" rel="noopener" aria-label="Scrivimi su WhatsApp">Scrivimi</a>
 
+<button class="mus" id="mus" type="button" aria-pressed="false" hidden>♪ Musica</button>
+<audio id="aud" src="audio/desert-night-oud.mp3" loop preload="metadata"></audio>
+
 <footer class="site">
   <div class="wrap">
     <a href="#" class="logo">Filo <em>&amp;</em> Pizzo</a>
@@ -439,6 +447,7 @@
       <a href="cookie.html">Cookie Policy</a>
       <button type="button" data-cookie-settings>Gestisci cookie</button>
     </div>
+    <p class="credit">Musica: <a href="https://budgetpixel.com/background-music/desert-night-oud-bdbdff92" target="_blank" rel="noopener">“Desert Night Oud”</a> di <a href="https://budgetpixel.com" target="_blank" rel="noopener">BudgetPixel AI</a> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
     <p class="legal">[Ragione sociale / Nome Cognome] · P.IVA [00000000000] · C.F. [XXXXXXXXXXXXXXXX] · [Indirizzo], [CAP Città] · ciao@filoepizzo.it</p>
   </div>
 </footer>
@@ -522,6 +531,20 @@
   });
 
   document.getElementById('y').textContent = new Date().getFullYear();
+
+/* Musica di sottofondo: parte solo al clic (i browser bloccano l'autoplay), nessun dato salvato.
+   Il pulsante compare solo se il file audio è stato caricato correttamente. */
+(function(){
+  const a = document.getElementById('aud'), b = document.getElementById('mus');
+  if (!a || !b) return;
+  a.volume = .35;
+  a.addEventListener('loadedmetadata', () => { b.hidden = false; });
+  a.addEventListener('error', () => { b.hidden = true; });
+  b.addEventListener('click', () => {
+    if (a.paused) { a.play().then(() => { b.setAttribute('aria-pressed','true'); b.textContent = '♪ Musica attiva'; }).catch(() => {}); }
+    else { a.pause(); b.setAttribute('aria-pressed','false'); b.textContent = '♪ Musica'; }
+  });
+})();
 </script>
 <script src="cookie.js" defer></script>
 </body>
