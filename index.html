@@ -537,7 +537,7 @@
 (function(){
   const a = document.getElementById('aud'), b = document.getElementById('mus');
   if (!a || !b) return;
-  a.volume = .35;
+  a.volume = .25;
   a.addEventListener('loadedmetadata', () => { b.hidden = false; });
   a.addEventListener('error', () => { b.hidden = true; });
   b.addEventListener('click', () => {
