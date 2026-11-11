@@ -162,6 +162,21 @@
   details p{color:var(--muted);margin-top:12px;max-width:640px}
   .wa{position:fixed;right:20px;bottom:20px;z-index:60;background:var(--rose-deep);color:#fff;padding:14px 22px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 12px 30px rgba(58,47,45,.25);transition:.3s}
   .wa:hover{background:var(--ink)}
+  /* BOMBA CON COUNTDOWN: sempre al centro dello schermo, anche scorrendo; non blocca i clic */
+  .bomb{position:fixed;left:50%;top:50%;width:clamp(240px,28vw,340px);aspect-ratio:300/440;transform:translate(-50%,-50%);z-index:55;pointer-events:none;filter:drop-shadow(0 22px 28px rgba(58,47,45,.35));animation:bombfloat 3.4s ease-in-out infinite}
+  .bomb svg{position:absolute;inset:0;width:100%;height:100%}
+  .bomb .txt{position:absolute;left:24%;right:24%;top:47%;bottom:22%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink)}
+  .bomb .k{font:600 .66rem/1.2 Jost,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+  .bomb .t{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:6px;width:100%}
+  .bomb .t b{display:block;font:700 clamp(1.3rem,2.7vw,1.9rem)/1 "Cormorant Garamond",Georgia,serif;font-variant-numeric:tabular-nums}
+  .bomb .t small{display:block;margin-top:2px;font-size:.5rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+  .bomb .s{margin-top:7px;font-size:.62rem;font-weight:500;opacity:.85}
+  .bomb.closed .t{display:none}
+  .bomb canvas{position:absolute;inset:0;width:100%;height:100%}
+  .bomb.gl{animation:none;filter:drop-shadow(0 22px 24px rgba(58,47,45,.3))}
+  .bomb.gl svg,.bomb.gl .txt{display:none}
+  @keyframes bombfloat{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-52%) rotate(2deg)}}
+  @media(prefers-reduced-motion:reduce){.bomb{animation:none}}
   .mus{position:fixed;left:20px;bottom:20px;z-index:60;background:rgba(250,246,240,.92);color:var(--ink);border:1px solid var(--ink);padding:13px 20px;font:400 .78rem Jost,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 30px rgba(58,47,45,.18);transition:.3s}
   .mus[hidden]{display:none}
   .mus:hover,.mus[aria-pressed="true"]{background:var(--ink);color:var(--ivory)}
@@ -438,6 +453,38 @@
 <button class="mus" id="mus" type="button" aria-pressed="false" hidden>♪ Musica</button>
 <audio id="aud" src="audio/desert-night-oud.mp3" loop preload="metadata"></audio>
 
+<!-- Avviso di chiusura: la data è in END, nello script in fondo alla pagina -->
+<div class="bomb" id="bomb" role="note" aria-label="Questa pagina chiude il 19 novembre alle 00:01">
+  <svg viewBox="0 0 300 440" aria-hidden="true">
+    <defs>
+      <radialGradient id="bombG" cx="38%" cy="35%" r="75%"><stop offset="0" stop-color="#fbeb8a"/><stop offset=".55" stop-color="#f3d640"/><stop offset="1" stop-color="#d9b21c"/></radialGradient>
+      <linearGradient id="bombH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e56b"/><stop offset="1" stop-color="#d9b21c"/></linearGradient>
+      <clipPath id="bombC"><path d="M150 118C218 118 248 176 248 252C248 342 206 412 150 412C94 412 52 342 52 252C52 176 82 118 150 118Z"/></clipPath>
+    </defs>
+    <ellipse cx="150" cy="424" rx="78" ry="9" fill="rgba(58,47,45,.18)"/>
+    <path d="M184 52C262 52 288 150 272 258L254 252C266 160 244 96 184 84Z" fill="url(#bombH)" stroke="#c9a31a" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="214" cy="72" r="4" fill="#b99412"/>
+    <path d="M150 118C218 118 248 176 248 252C248 342 206 412 150 412C94 412 52 342 52 252C52 176 82 118 150 118Z" fill="url(#bombG)" stroke="#c9a31a" stroke-width="2"/>
+    <g clip-path="url(#bombC)" fill="none" stroke-linecap="round">
+      <g stroke="#b99412" stroke-width="3" opacity=".4">
+        <path d="M40 178Q150 196 260 178"/><path d="M40 232Q150 252 260 232"/><path d="M40 290Q150 312 260 290"/><path d="M40 350Q150 372 260 350"/>
+        <path d="M150 120V412"/><path d="M104 120C92 220 98 330 112 412"/><path d="M196 120C208 220 202 330 188 412"/>
+      </g>
+      <path d="M90 190C84 230 86 270 96 310" stroke="#fff" stroke-opacity=".5" stroke-width="8"/>
+    </g>
+    <rect x="68" y="206" width="164" height="146" rx="22" fill="#fbeb8a" opacity=".88"/>
+    <rect x="104" y="92" width="92" height="40" rx="10" fill="url(#bombH)" stroke="#c9a31a" stroke-width="2"/>
+    <path d="M84 56Q84 40 104 40H170Q196 40 196 62V96H84Z" fill="url(#bombH)" stroke="#c9a31a" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+  <div class="txt">
+    <span class="k" id="bk">La pagina chiude tra</span>
+    <div class="t" id="bt">
+      <div><b id="bd">00</b><small>gg</small></div><div><b id="bh">00</b><small>ore</small></div><div><b id="bm">00</b><small>min</small></div><div><b id="bs">00</b><small>sec</small></div>
+    </div>
+    <span class="s" id="bn">Grazie per la visita</span>
+  </div>
+</div>
+
 <footer class="site">
   <div class="wrap">
     <a href="#" class="logo">Filo <em>&amp;</em> Pizzo</a>
@@ -532,6 +579,26 @@
 
   document.getElementById('y').textContent = new Date().getFullYear();
 
+/* Countdown di chiusura (ora italiana). Per cambiare la data basta modificare END. */
+(function(){
+  const END = new Date('2026-11-19T00:01:00+01:00').getTime();
+  const box = document.getElementById('bomb'); if (!box) return;
+  const el = id => document.getElementById(id), p2 = n => String(n).padStart(2, '0');
+  function tick(){
+    const d = END - Date.now();
+    if (d <= 0) {
+      box.classList.add('closed'); el('bk').textContent = 'La pagina è chiusa'; el('bn').textContent = 'Grazie di cuore';
+      window.__bombState = {closed: true}; if (window.bombUpdate) window.bombUpdate();
+      clearInterval(timer); return;
+    }
+    const s = Math.floor(d / 1000), v = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60];
+    ['bd','bh','bm','bs'].forEach((id, i) => { el(id).textContent = p2(v[i]); });
+    window.__bombState = {d: v[0], h: v[1], m: v[2], s: v[3], closed: false};
+    if (window.bombUpdate) window.bombUpdate();   // aggiorna la scritta sulla bomba 3D (bomba.js)
+  }
+  const timer = setInterval(tick, 1000); tick();
+})();
+
 /* Musica di sottofondo: parte solo al clic (i browser bloccano l'autoplay), nessun dato salvato.
    Il pulsante compare solo se il file audio è stato caricato correttamente. */
 (function(){
@@ -546,6 +613,7 @@
   });
 })();
 </script>
+<script src="bomba.js" defer></script>
 <script src="cookie.js" defer></script>
 </body>
 </html>
